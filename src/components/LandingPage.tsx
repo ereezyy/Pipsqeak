@@ -1,92 +1,42 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { 
-  Code2, 
-  Zap, 
-  Download, 
-  DollarSign,
   ArrowRight,
   Check,
   Sparkles,
-  Rocket,
   Shield,
   Users,
   Sprout,
   Book,
-  Calendar
+  Calendar,
+  Package,
+  Award,
+  Sun,
+  Droplets
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const LandingPage = () => {
   const features = [
     {
-      icon: <Code2 className="h-8 w-8" />,
-      title: "Natural Language to Code",
-      description: "Transform your ideas into production-ready applications using plain English descriptions."
+      icon: <Sprout className="h-8 w-8" />,
+      title: "Premium Seed Collections",
+      description: "Hand-selected, organic, non-GMO seeds from the finest varieties for maximum success."
     },
     {
-      icon: <Zap className="h-8 w-8" />,
-      title: "Lightning Fast Generation",
-      description: "Generate complex applications in seconds, not hours. Our AI understands context and best practices."
+      icon: <Book className="h-8 w-8" />,
+      title: "Expert Growing Guides",
+      description: "Step-by-step instructions from seed to harvest, with tips from master gardeners."
     },
     {
-      icon: <Download className="h-8 w-8" />,
-      title: "Export Ready Projects",
-      description: "Download complete, deployable projects with all dependencies and documentation included."
+      icon: <Users className="h-8 w-8" />,
+      title: "Gardening Community",
+      description: "Connect with thousands of gardeners, share experiences, and get expert advice."
     },
     {
-      icon: <DollarSign className="h-8 w-8" />,
-      title: "Monetization Ready",
-      description: "Built-in payment integration, user management, and scaling infrastructure for immediate commercialization."
-    }
-  ];
-
-  const pricingPlans = [
-    {
-      name: "Starter",
-      price: "$0",
-      period: "forever",
-      description: "Perfect for learning and small projects",
-      features: [
-        "5 projects per month",
-        "Basic templates",
-        "Community support",
-        "Standard export formats"
-      ],
-      cta: "Get Started Free",
-      popular: false
-    },
-    {
-      name: "Professional",
-      price: "$29",
-      period: "month",
-      description: "For serious developers and small teams",
-      features: [
-        "Unlimited projects",
-        "Premium templates",
-        "Priority support",
-        "Advanced export options",
-        "Custom branding",
-        "API access"
-      ],
-      cta: "Start Pro Trial",
-      popular: true
-    },
-    {
-      name: "Enterprise",
-      price: "$99",
-      period: "month",
-      description: "For teams and organizations",
-      features: [
-        "Everything in Professional",
-        "Team collaboration",
-        "Custom integrations",
-        "Dedicated support",
-        "On-premise deployment",
-        "Advanced analytics"
-      ],
-      cta: "Contact Sales",
-      popular: false
+      icon: <Calendar className="h-8 w-8" />,
+      title: "Smart Garden Planning",
+      description: "AI-powered recommendations based on your location, climate, and growing preferences."
     }
   ];
 
@@ -97,17 +47,23 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-2">
-              <Sparkles className="h-8 w-8 text-primary-500" />
-              <span className="text-2xl font-bold text-white">CodeGen AI</span>
+              <Sprout className="h-8 w-8 text-secondary-500" />
+              <span className="text-2xl font-bold text-white">SeedMaster</span>
             </div>
             <div className="hidden md:flex items-center space-x-8">
               <a href="#features" className="text-gray-300 hover:text-white transition-colors">Features</a>
-              <a href="#pricing" className="text-gray-300 hover:text-white transition-colors">Pricing</a>
+              <a href="#products" className="text-gray-300 hover:text-white transition-colors">Products</a>
               <Link 
-                to="/products" 
-                className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors"
+                to="/login" 
+                className="text-gray-300 hover:text-white transition-colors"
               >
-                View Products
+                Sign In
+              </Link>
+              <Link 
+                to="/signup" 
+                className="bg-secondary-500 text-white px-6 py-2 rounded-lg hover:bg-secondary-600 transition-colors"
+              >
+                Get Started
               </Link>
             </div>
           </div>
@@ -123,27 +79,30 @@ const LandingPage = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
-              Transform Ideas Into
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
-                {" "}Production Code
+              Grow Your Perfect
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-secondary-400 to-primary-400">
+                {" "}Garden Journey
               </span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl mx-auto">
-              The most intelligent AI-powered development platform that converts natural language 
-              into fully-featured, production-ready applications. Build faster, sell easier.
+              Premium seed collections, expert growing guides, and a thriving community 
+              to help you grow the garden of your dreams. From beginner to master gardener.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link 
-                to="/products"
-                className="bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-600 transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
+                to="/signup"
+                className="bg-secondary-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-secondary-600 transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
               >
                 <Sprout className="h-5 w-5" />
                 <span>Start Growing</span>
                 <ArrowRight className="h-5 w-5" />
               </Link>
-              <button className="border border-gray-600 text-white px-8 py-4 rounded-xl font-semibold hover:border-gray-500 transition-colors">
-                Watch Demo
-              </button>
+              <Link 
+                to="#products"
+                className="border border-gray-600 text-white px-8 py-4 rounded-xl font-semibold hover:border-gray-500 transition-colors"
+              >
+                View Seed Collections
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -161,28 +120,7 @@ const LandingPage = () => {
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              {
-                icon: <Sprout className="h-8 w-8" />,
-                title: "Premium Seed Collections",
-                description: "Hand-selected, organic, non-GMO seeds from the finest varieties for maximum success."
-              },
-              {
-                icon: <Book className="h-8 w-8" />,
-                title: "Expert Growing Guides",
-                description: "Step-by-step instructions from seed to harvest, with tips from master gardeners."
-              },
-              {
-                icon: <Users className="h-8 w-8" />,
-                title: "Gardening Community",
-                description: "Connect with thousands of gardeners, share experiences, and get expert advice."
-              },
-              {
-                icon: <Calendar className="h-8 w-8" />,
-                title: "Smart Garden Planning",
-                description: "AI-powered recommendations based on your location, climate, and growing preferences."
-              }
-            ].map((feature, index) => (
+            {features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -202,7 +140,7 @@ const LandingPage = () => {
       {/* Stats Section */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-3 gap-8 text-center">
+          <div className="grid md:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-4xl font-bold text-secondary-500 mb-2">15,000+</div>
               <div className="text-gray-400">Gardens Started</div>
@@ -215,12 +153,16 @@ const LandingPage = () => {
               <div className="text-4xl font-bold text-primary-500 mb-2">50K+</div>
               <div className="text-gray-400">Happy Gardeners</div>
             </div>
+            <div>
+              <div className="text-4xl font-bold text-secondary-500 mb-2">200+</div>
+              <div className="text-gray-400">Seed Varieties</div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Product Showcase */}
-      <section className="py-20">
+      <section id="products" className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
@@ -247,9 +189,9 @@ const LandingPage = () => {
                 <div className="relative">
                   <div className="bg-gradient-to-br from-secondary-500/20 to-primary-500/20 rounded-xl p-8 text-center">
                     <div className="grid grid-cols-3 gap-4 mb-6">
-                      {[1,2,3,4,5,6].map((i) => (
+                      {['🍅', '🥬', '🌿', '🥕', '🌶️', '🥒'].map((emoji, i) => (
                         <div key={i} className="bg-secondary-500/30 rounded-lg p-4 flex items-center justify-center">
-                          <div className="w-6 h-6 bg-secondary-400 rounded-full"></div>
+                          <div className="text-2xl">{emoji}</div>
                         </div>
                       ))}
                     </div>
@@ -266,8 +208,8 @@ const LandingPage = () => {
                 {/* Product Details */}
                 <div>
                   <div className="flex items-center space-x-2 mb-4">
-                    <Sparkles className="h-6 w-6 text-primary-500" />
-                    <span className="text-primary-400 font-semibold">5 Pack Seeds</span>
+                    <Package className="h-6 w-6 text-primary-500" />
+                    <span className="text-primary-400 font-semibold">Monthly Subscription</span>
                   </div>
                   
                   <h3 className="text-3xl font-bold text-white mb-4">
@@ -310,7 +252,7 @@ const LandingPage = () => {
                   </div>
                   
                   <Link 
-                    to="/products"
+                    to="/signup"
                     className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition-transform w-full justify-center"
                   >
                     <Sparkles className="h-5 w-5" />
@@ -356,11 +298,40 @@ const LandingPage = () => {
                 className="text-center"
               >
                 <div className="w-16 h-16 bg-accent-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Rocket className="h-8 w-8 text-accent-500" />
+                  <Award className="h-8 w-8 text-accent-500" />
                 </div>
-                <h4 className="text-lg font-semibold text-white mb-2">Fast Shipping</h4>
-                <p className="text-gray-400 text-sm">Free expedited shipping to get your seeds planted at the perfect time</p>
+                <h4 className="text-lg font-semibold text-white mb-2">Premium Quality</h4>
+                <p className="text-gray-400 text-sm">Certified organic, non-GMO heirloom varieties for superior results</p>
               </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="py-20 bg-gray-800/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">Why Choose SeedMaster?</h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              We're more than just seeds - we're your complete gardening partner
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+              <Sun className="h-8 w-8 text-accent-500 mb-4" />
+              <h3 className="text-xl font-semibold text-white mb-2">Climate-Specific Selection</h3>
+              <p className="text-gray-400">Seeds chosen specifically for your growing zone and climate conditions for maximum success rates.</p>
+            </div>
+            <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+              <Book className="h-8 w-8 text-secondary-500 mb-4" />
+              <h3 className="text-xl font-semibold text-white mb-2">Expert Guidance</h3>
+              <p className="text-gray-400">Detailed growing guides, planting schedules, and troubleshooting tips from master gardeners.</p>
+            </div>
+            <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-700">
+              <Droplets className="h-8 w-8 text-blue-500 mb-4" />
+              <h3 className="text-xl font-semibold text-white mb-2">Ongoing Support</h3>
+              <p className="text-gray-400">24/7 access to our gardening community and expert support throughout your growing season.</p>
             </div>
           </div>
         </div>
@@ -376,7 +347,7 @@ const LandingPage = () => {
             Join thousands of gardeners who are growing successfully with our premium seeds and expert guidance.
           </p>
           <Link 
-            to="/products"
+            to="/signup"
             className="inline-flex items-center space-x-2 bg-gradient-to-r from-secondary-500 to-primary-500 text-white px-12 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform"
           >
             <Sprout className="h-6 w-6" />

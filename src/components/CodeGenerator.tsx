@@ -16,6 +16,7 @@ import {
   Clock
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { aiClient } from '../lib/ai-client';
 
 const CodeGenerator = () => {
   const [prompt, setPrompt] = useState('');
@@ -23,6 +24,8 @@ const CodeGenerator = () => {
   const [isGenerating, setIsGenerating] = useState(false);
   const [generatedCode, setGeneratedCode] = useState('');
   const [activeTab, setActiveTab] = useState('preview');
+  const [generatedFiles, setGeneratedFiles] = useState<Array<{ name: string; content: string; type: string }>>([]);
+  const [previewDescription, setPreviewDescription] = useState('');
 
   const frameworks = [
     { id: 'react', name: 'React + TypeScript', icon: '⚛️' },
@@ -45,59 +48,19 @@ const CodeGenerator = () => {
     if (!prompt.trim()) return;
     
     setIsGenerating(true);
-    
-    // Simulate AI code generation
-    await new Promise(resolve => setTimeout(resolve, 3000));
-    
-    const mockCode = `import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+    setActiveTab('code');
 
-const GeneratedApp = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch data or initialize app
-    const initializeApp = async () => {
-      // Your generated application logic here
-      setLoading(false);
-    };
-    
-    initializeApp();
-  }, []);
-
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen bg-gray-100 p-8"
-    >
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-gray-900 mb-8">
-          Generated Application
-        </h1>
-        
-        {/* Your generated UI components will appear here */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {/* Generated content based on your prompt */}
-        </div>
-      </div>
-    </motion.div>
-  );
-};
-
-export default GeneratedApp;`;
-
-    setGeneratedCode(mockCode);
-    setIsGenerating(false);
+    try {
+      const result = await aiClient.generateCode(prompt, framework);
+      setGeneratedCode(result.code);
+      setGeneratedFiles(result.files);
+      setPreviewDescription(result.preview);
+    } catch (error) {
+      console.error('Generation failed:', error);
+      setGeneratedCode(`// Generation failed, please try again\n// Error: ${error}`);
+    } finally {
+      setIsGenerating(false);
+    }
   };
 
   const handleCopyCode = () => {
@@ -307,16 +270,17 @@ export default GeneratedApp;`;
               {generatedCode && activeTab === 'preview' && (
                 <div className="p-4">
                   <div className="bg-white rounded-lg p-6 min-h-96">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Generated Application Preview</h3>
-                    <p className="text-gray-600 mb-6">Your application has been generated successfully!</p>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">Application Preview</h3>
+                    <p className="text-gray-600 mb-6">{previewDescription}</p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div className="bg-gray-100 p-4 rounded-lg">
                         <h4 className="font-semibold text-gray-900 mb-2">Features Included:</h4>
                         <ul className="text-sm text-gray-600 space-y-1">
                           <li>• Modern responsive design</li>
                           <li>• Component-based architecture</li>
-                          <li>• TypeScript support</li>
+                          <li>• {framework} framework</li>
                           <li>• Production-ready code</li>
+                          <li>• AI-generated logic</li>
                         </ul>
                       </div>
                       <div className="bg-gray-100 p-4 rounded-lg">
@@ -326,6 +290,7 @@ export default GeneratedApp;`;
                           <li>• Dependencies included</li>
                           <li>• Documentation provided</li>
                           <li>• Best practices implemented</li>
+                          <li>• Custom functionality</li>
                         </ul>
                       </div>
                     </div>
@@ -336,31 +301,18 @@ export default GeneratedApp;`;
               {generatedCode && activeTab === 'files' && (
                 <div className="p-4">
                   <div className="space-y-3">
-                    <div className="flex items-center space-x-2 text-gray-300">
-                      <FileText className="h-4 w-4" />
-                      <span className="font-code text-sm">src/App.tsx</span>
-                      <span className="text-xs text-gray-500">Main component</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-300">
-                      <FileText className="h-4 w-4" />
-                      <span className="font-code text-sm">src/components/</span>
-                      <span className="text-xs text-gray-500">Reusable components</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-300">
-                      <FileText className="h-4 w-4" />
-                      <span className="font-code text-sm">src/styles/</span>
-                      <span className="text-xs text-gray-500">Styling files</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-300">
-                      <Package className="h-4 w-4" />
-                      <span className="font-code text-sm">package.json</span>
-                      <span className="text-xs text-gray-500">Dependencies</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-gray-300">
-                      <FileText className="h-4 w-4" />
-                      <span className="font-code text-sm">README.md</span>
-                      <span className="text-xs text-gray-500">Documentation</span>
-                    </div>
+                    {generatedFiles.map((file, index) => (
+                      <div key={index} className="bg-gray-700 rounded-lg p-4">
+                        <div className="flex items-center space-x-2 text-gray-300 mb-2">
+                          {file.type === 'config' ? <Package className="h-4 w-4" /> : <FileText className="h-4 w-4" />}
+                          <span className="font-code text-sm">{file.name}</span>
+                          <span className="text-xs text-gray-500 capitalize">{file.type}</span>
+                        </div>
+                        <pre className="text-xs text-gray-400 overflow-auto max-h-32">
+                          <code>{file.content}</code>
+                        </pre>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )}

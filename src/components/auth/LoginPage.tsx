@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, Sparkles, ArrowLeft } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../hooks/useAuth';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -11,6 +11,7 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const navigate = useNavigate();
+  const { signIn } = useAuth();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,10 +19,7 @@ const LoginPage = () => {
     setMessage(null);
 
     try {
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+      const { error } = await signIn(email, password);
 
       if (error) {
         setMessage({ type: 'error', text: error.message });

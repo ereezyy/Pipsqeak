@@ -13,26 +13,21 @@ import {
 } from 'lucide-react';
 import { stripeProducts } from '../stripe-config';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '../hooks/useAuth';
 
 const ProductsPage = () => {
   const [loading, setLoading] = useState<string | null>(null);
-  const [user, setUser] = useState<any>(null);
   const [subscription, setSubscription] = useState<any>(null);
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
-    checkUser();
-    fetchSubscription();
-  }, []);
-
-  const checkUser = async () => {
-    const { data: { user } } = await supabase.auth.getUser();
     if (!user) {
       navigate('/login');
       return;
     }
-    setUser(user);
-  };
+    fetchSubscription();
+  }, [user, navigate]);
 
   const fetchSubscription = async () => {
     try {
@@ -100,7 +95,7 @@ const ProductsPage = () => {
   };
 
   const handleLogout = async () => {
-    await supabase.auth.signOut();
+    await signOut();
     navigate('/');
   };
 

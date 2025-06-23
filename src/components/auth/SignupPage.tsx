@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Link, useNavigate } from 'react-router-dom';
 import { Mail, Lock, Eye, EyeOff, User, Sparkles, ArrowLeft } from 'lucide-react';
-import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../hooks/useAuth';
 
 const SignupPage = () => {
   const [email, setEmail] = useState('');
@@ -13,6 +13,7 @@ const SignupPage = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const navigate = useNavigate();
+  const { signUp } = useAuth();
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,13 +33,7 @@ const SignupPage = () => {
     }
 
     try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-        options: {
-          emailRedirectTo: undefined, // Disable email confirmation
-        }
-      });
+      const { error } = await signUp(email, password);
 
       if (error) {
         setMessage({ type: 'error', text: error.message });

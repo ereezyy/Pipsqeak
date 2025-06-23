@@ -14,9 +14,11 @@ import {
   Zap
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('projects');
+  const { user, signOut } = useAuth();
 
   const projects = [
     {
@@ -55,6 +57,10 @@ const Dashboard = () => {
     { label: "Success Rate", value: "94%", icon: <TrendingUp className="h-5 w-5" /> }
   ];
 
+  const handleLogout = async () => {
+    await signOut();
+  };
+
   return (
     <div className="min-h-screen bg-gray-900">
       {/* Navigation */}
@@ -66,6 +72,7 @@ const Dashboard = () => {
               <span className="text-2xl font-bold text-white">CodeGen AI</span>
             </Link>
             <div className="flex items-center space-x-4">
+              <span className="text-gray-400 text-sm">{user?.email}</span>
               <Link 
                 to="/generate"
                 className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors flex items-center space-x-2"
@@ -76,7 +83,10 @@ const Dashboard = () => {
               <button className="text-gray-400 hover:text-white">
                 <Settings className="h-6 w-6" />
               </button>
-              <button className="text-gray-400 hover:text-white">
+              <button 
+                onClick={handleLogout}
+                className="text-gray-400 hover:text-white"
+              >
                 <User className="h-6 w-6" />
               </button>
             </div>

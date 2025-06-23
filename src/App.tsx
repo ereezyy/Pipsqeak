@@ -7,6 +7,7 @@ import LoginPage from './components/auth/LoginPage';
 import SignupPage from './components/auth/SignupPage';
 import ProductsPage from './components/ProductsPage';
 import SuccessPage from './components/SuccessPage';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -14,12 +15,28 @@ function App() {
       <div className="min-h-screen bg-gray-900">
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/generate" element={<CodeGenerator />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          } />
+          <Route path="/generate" element={
+            <ProtectedRoute>
+              <CodeGenerator />
+            </ProtectedRoute>
+          } />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/success" element={<SuccessPage />} />
+          <Route path="/products" element={
+            <ProtectedRoute>
+              <ProductsPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/success" element={
+            <ProtectedRoute>
+              <SuccessPage />
+            </ProtectedRoute>
+          } />
         </Routes>
       </div>
     </Router>

@@ -10,7 +10,10 @@ import {
   Sparkles,
   Rocket,
   Shield,
-  Users
+  Users,
+  Sprout,
+  Book,
+  Calendar
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

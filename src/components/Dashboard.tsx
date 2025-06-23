@@ -1,20 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Plus,
-  Seedling,
-  Clock,
-  Calendar,
-  Star,
-  Settings,
-  User,
-  Sprout,
-  TrendingUp,
-  Package,
-  Book,
-  Users,
-  MapPin
-} from 'lucide-react';
+import { Plus, Scaling as Seedling, Clock, Calendar, Star, Settings, User, Sprout, TrendingUp, Package, Book, Users, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../hooks/useAuth';
 

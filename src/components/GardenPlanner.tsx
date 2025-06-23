@@ -1,19 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Plus,
-  MapPin,
-  Calendar,
-  Thermometer,
-  Droplets,
-  Sun,
-  Seedling,
-  Book,
-  CheckCircle,
-  AlertCircle,
-  Clock,
-  Sprout
-} from 'lucide-react';
+import { Plus, MapPin, Calendar, Thermometer, Droplets, Sun, Scaling as Seedling, Book, CheckCircle, AlertCircle, Clock, Sprout } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const GardenPlanner = () => {

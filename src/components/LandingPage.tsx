@@ -195,6 +195,153 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Product Showcase */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-4">
+              Premium Seed Collections
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Hand-selected seeds for the perfect gardening experience
+            </p>
+          </div>
+          
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 border border-gray-700 overflow-hidden relative"
+            >
+              {/* Background decoration */}
+              <div className="absolute top-0 right-0 w-32 h-32 bg-primary-500/10 rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-secondary-500/10 rounded-full blur-3xl"></div>
+              
+              <div className="relative grid md:grid-cols-2 gap-8 items-center">
+                {/* Product Image/Visual */}
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-secondary-500/20 to-primary-500/20 rounded-xl p-8 text-center">
+                    <div className="grid grid-cols-3 gap-4 mb-6">
+                      {[1,2,3,4,5,6].map((i) => (
+                        <div key={i} className="bg-secondary-500/30 rounded-lg p-4 flex items-center justify-center">
+                          <div className="w-6 h-6 bg-secondary-400 rounded-full"></div>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="text-white font-semibold text-lg mb-2">Premium Seed Collection</div>
+                    <div className="text-gray-300 text-sm">6 Varieties • Organic • Non-GMO</div>
+                  </div>
+                  
+                  {/* Floating elements */}
+                  <div className="absolute -top-4 -right-4 bg-accent-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                    ⭐ Premium
+                  </div>
+                </div>
+                
+                {/* Product Details */}
+                <div>
+                  <div className="flex items-center space-x-2 mb-4">
+                    <Sparkles className="h-6 w-6 text-primary-500" />
+                    <span className="text-primary-400 font-semibold">5 Pack Seeds</span>
+                  </div>
+                  
+                  <h3 className="text-3xl font-bold text-white mb-4">
+                    Premium Gardening Collection
+                  </h3>
+                  
+                  <p className="text-gray-300 mb-6 leading-relaxed">
+                    Whether you are a novice gardener or someone looking to expand your collection, 
+                    these seeds provide the perfect opportunity to embark on a rewarding gardening journey.
+                  </p>
+                  
+                  <div className="space-y-3 mb-6">
+                    <div className="flex items-center space-x-3">
+                      <Check className="h-5 w-5 text-secondary-500" />
+                      <span className="text-gray-300">Hand-selected premium varieties</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Check className="h-5 w-5 text-secondary-500" />
+                      <span className="text-gray-300">Expert growing guides included</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Check className="h-5 w-5 text-secondary-500" />
+                      <span className="text-gray-300">Monthly delivery subscription</span>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                      <Check className="h-5 w-5 text-secondary-500" />
+                      <span className="text-gray-300">24/7 gardening support</span>
+                    </div>
+                  </div>
+                  
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <div className="text-3xl font-bold text-white">$100.00</div>
+                      <div className="text-gray-400 text-sm">per month</div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-secondary-400 font-semibold">🌱 Organic Certified</div>
+                      <div className="text-gray-400 text-sm">Non-GMO • Heirloom Varieties</div>
+                    </div>
+                  </div>
+                  
+                  <Link 
+                    to="/products"
+                    className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-8 py-4 rounded-xl font-semibold hover:scale-105 transition-transform w-full justify-center"
+                  >
+                    <Sparkles className="h-5 w-5" />
+                    <span>Start Growing Today</span>
+                    <ArrowRight className="h-5 w-5" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+            
+            {/* Additional product highlights */}
+            <div className="grid md:grid-cols-3 gap-6 mt-12">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 bg-primary-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Users className="h-8 w-8 text-primary-500" />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">Expert Community</h4>
+                <p className="text-gray-400 text-sm">Join thousands of successful gardeners sharing tips and experiences</p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 bg-secondary-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Shield className="h-8 w-8 text-secondary-500" />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">Quality Guarantee</h4>
+                <p className="text-gray-400 text-sm">100% germination guarantee or your money back, no questions asked</p>
+              </motion.div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="text-center"
+              >
+                <div className="w-16 h-16 bg-accent-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Rocket className="h-8 w-8 text-accent-500" />
+                </div>
+                <h4 className="text-lg font-semibold text-white mb-2">Fast Shipping</h4>
+                <p className="text-gray-400 text-sm">Free expedited shipping to get your seeds planted at the perfect time</p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section id="pricing" className="py-20 bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

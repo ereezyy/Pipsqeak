@@ -134,8 +134,8 @@ const LandingPage = () => {
                 to="/products"
                 className="bg-primary-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-primary-600 transition-all transform hover:scale-105 flex items-center justify-center space-x-2"
               >
-                <Rocket className="h-5 w-5" />
-                <span>View Products</span>
+                <Sprout className="h-5 w-5" />
+                <span>Start Growing</span>
                 <ArrowRight className="h-5 w-5" />
               </Link>
               <button className="border border-gray-600 text-white px-8 py-4 rounded-xl font-semibold hover:border-gray-500 transition-colors">
@@ -151,22 +151,43 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-white mb-4">
-              Built for Professional Developers
+              Everything You Need to Grow Successfully
             </h2>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Everything you need to transform ideas into profitable applications
+              From premium seeds to expert guidance, we provide everything for your gardening success
             </p>
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
+            {[
+              {
+                icon: <Sprout className="h-8 w-8" />,
+                title: "Premium Seed Collections",
+                description: "Hand-selected, organic, non-GMO seeds from the finest varieties for maximum success."
+              },
+              {
+                icon: <Book className="h-8 w-8" />,
+                title: "Expert Growing Guides",
+                description: "Step-by-step instructions from seed to harvest, with tips from master gardeners."
+              },
+              {
+                icon: <Users className="h-8 w-8" />,
+                title: "Gardening Community",
+                description: "Connect with thousands of gardeners, share experiences, and get expert advice."
+              },
+              {
+                icon: <Calendar className="h-8 w-8" />,
+                title: "Smart Garden Planning",
+                description: "AI-powered recommendations based on your location, climate, and growing preferences."
+              }
+            ].map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-primary-500/50 transition-all"
+                className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-secondary-500/50 transition-all"
               >
-                <div className="text-primary-500 mb-4">{feature.icon}</div>
+                <div className="text-secondary-500 mb-4">{feature.icon}</div>
                 <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
                 <p className="text-gray-400">{feature.description}</p>
               </motion.div>
@@ -180,16 +201,16 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <div className="text-4xl font-bold text-primary-500 mb-2">10,000+</div>
-              <div className="text-gray-400">Applications Generated</div>
+              <div className="text-4xl font-bold text-secondary-500 mb-2">15,000+</div>
+              <div className="text-gray-400">Gardens Started</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-secondary-500 mb-2">99.9%</div>
-              <div className="text-gray-400">Code Quality Score</div>
+              <div className="text-4xl font-bold text-accent-500 mb-2">94%</div>
+              <div className="text-gray-400">Success Rate</div>
             </div>
             <div>
-              <div className="text-4xl font-bold text-accent-500 mb-2">$2M+</div>
-              <div className="text-gray-400">Revenue Generated</div>
+              <div className="text-4xl font-bold text-primary-500 mb-2">50K+</div>
+              <div className="text-gray-400">Happy Gardeners</div>
             </div>
           </div>
         </div>
@@ -342,81 +363,21 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Pricing Section */}
-      <section id="pricing" className="py-20 bg-gray-800/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-white mb-4">
-              Choose Your Plan
-            </h2>
-            <p className="text-xl text-gray-400">
-              Start free and scale as you grow
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {pricingPlans.map((plan, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative rounded-xl p-8 ${
-                  plan.popular 
-                    ? 'bg-gradient-to-b from-primary-900/50 to-gray-900 border-2 border-primary-500' 
-                    : 'bg-gray-900/50 border border-gray-700'
-                }`}
-              >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-primary-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-                  <div className="text-4xl font-bold text-white mb-2">
-                    {plan.price}
-                    <span className="text-lg text-gray-400">/{plan.period}</span>
-                  </div>
-                  <p className="text-gray-400">{plan.description}</p>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center space-x-3">
-                      <Check className="h-5 w-5 text-secondary-500 flex-shrink-0" />
-                      <span className="text-gray-300">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <button className={`w-full py-3 rounded-lg font-semibold transition-all ${
-                  plan.popular
-                    ? 'bg-primary-500 text-white hover:bg-primary-600'
-                    : 'border border-gray-600 text-white hover:border-gray-500'
-                }`}>
-                  {plan.cta}
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl font-bold text-white mb-6">
-            Ready to Transform Your Development Process?
+            Ready to Start Your Garden Journey?
           </h2>
           <p className="text-xl text-gray-400 mb-8">
-            Join thousands of developers who are already building the future with AI-powered code generation.
+            Join thousands of gardeners who are growing successfully with our premium seeds and expert guidance.
           </p>
           <Link 
             to="/products"
-            className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-12 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform"
+            className="inline-flex items-center space-x-2 bg-gradient-to-r from-secondary-500 to-primary-500 text-white px-12 py-4 rounded-xl font-bold text-lg hover:scale-105 transition-transform"
           >
-            <Sparkles className="h-6 w-6" />
-            <span>Shop Now</span>
+            <Sprout className="h-6 w-6" />
+            <span>Start Growing</span>
             <ArrowRight className="h-6 w-6" />
           </Link>
         </div>
@@ -427,8 +388,8 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
-              <Sparkles className="h-6 w-6 text-primary-500" />
-              <span className="text-xl font-bold text-white">CodeGen AI</span>
+              <Sprout className="h-6 w-6 text-secondary-500" />
+              <span className="text-xl font-bold text-white">SeedMaster</span>
             </div>
             <div className="flex space-x-6 text-gray-400">
               <a href="#" className="hover:text-white transition-colors">Privacy</a>
@@ -437,7 +398,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="text-center text-gray-500 mt-8">
-            © 2025 CodeGen AI. All rights reserved.
+            © 2025 SeedMaster. All rights reserved.
           </div>
         </div>
       </footer>

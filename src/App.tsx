@@ -2,11 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Dashboard from './components/Dashboard';
-import CodeGenerator from './components/CodeGenerator';
+import GardenPlanner from './components/GardenPlanner';
 import LoginPage from './components/auth/LoginPage';
 import SignupPage from './components/auth/SignupPage';
 import ProductsPage from './components/ProductsPage';
 import SuccessPage from './components/SuccessPage';
+import GrowingGuides from './components/GrowingGuides';
+import SeedTracker from './components/SeedTracker';
+import Community from './components/Community';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -20,9 +23,24 @@ function App() {
               <Dashboard />
             </ProtectedRoute>
           } />
-          <Route path="/generate" element={
+          <Route path="/planner" element={
             <ProtectedRoute>
-              <CodeGenerator />
+              <GardenPlanner />
+            </ProtectedRoute>
+          } />
+          <Route path="/guides" element={
+            <ProtectedRoute>
+              <GrowingGuides />
+            </ProtectedRoute>
+          } />
+          <Route path="/tracker" element={
+            <ProtectedRoute>
+              <SeedTracker />
+            </ProtectedRoute>
+          } />
+          <Route path="/community" element={
+            <ProtectedRoute>
+              <Community />
             </ProtectedRoute>
           } />
           <Route path="/login" element={<LoginPage />} />
